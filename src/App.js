@@ -6,7 +6,7 @@ import MovieItem from './Component/MovieItem';
 import SearchedMovie from './Component/SearchedMovie';
 import {useSelector, useDispatch } from 'react-redux';
 import { Parallax, Background } from "react-parallax";
-
+import Header from './Component/Header';
 import './index.css';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
   "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/empire-state-building-black-and-white-square-format-john-farnan.jpg";
 
   return (<>
-  <header> HOOKED </header>
+  <Header></Header>
   <Parallax bgImage={image1} strength={500}>
       <div style={{ height: 500 }}>
         <div style={insideStyles}>HTML inside the parallax</div>
