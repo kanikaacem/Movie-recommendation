@@ -156,3 +156,16 @@ header {
     height: 100vh;
 
 }
+
+footer {
+    position: fixed;
+    bottom: 50%;
+    right: 10px;
+    padding: 10px;
+}
+
+footer svg {
+    transform: scale(2.5);
+    width: 100%;
+    cursor: pointer;
+}

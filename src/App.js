@@ -9,22 +9,26 @@ import './index.css';
 import AddToDo from './Component/AddToDo';
 import ListItem from './Component/ListItem';
 import Counter from './Counter';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import {ThemeProvider} from "styled-components";
+import { GlobalStyles } from "./GlobalStyles";
+import { lightTheme, darkTheme } from "./theme.js"
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { useState } from "react";
 // import { ThemeProvider } from '@material-ui/styles';
 // import { createTheme } from '@material-ui/core/styles';
 function App() {
   const searchedMovie = useSelector(state => state.searchedMovie);
- 
-  const lightTheme = createTheme({
-      body:"#ffffff",
-      color:"black",
-  })
+  const [theme,setTheme] = useState('light')
+  // const lightTheme = createTheme({
+  //     body:"#ffffff",
+  //     color:"black",
+  // })
 
-  const darkTheme = createTheme({
-      body:"#242424",
-      color:"black"
-  })
+  // const darkTheme = createTheme({
+  //     body:"#242424",
+  //     color:"black"
+  // })
   // const insideStyles = {
   //   background: "white",
   //   padding: 20,
@@ -43,16 +47,24 @@ function App() {
   // "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/empire-state-building-black-and-white-square-format-john-farnan.jpg";
 
   return (
-  
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+
     <>
-    <ThemeProvider theme={darkTheme}>
-      <div id="movieListMain" style={darkTheme}>
+      <GlobalStyles/>
+      <div id="movieListMain" >
       <SearchForm></SearchForm>
       { Object.keys(searchedMovie).length !== 0 && !searchedMovie.Error && <SearchedMovie></SearchedMovie>} 
       <MovieItem></MovieItem>
       </div>
-      </ThemeProvider>
+      <footer>
+      { theme === 'light' ? 
+      <DarkModeIcon onClick={() => setTheme('dark')}></DarkModeIcon> : 
+      <LightModeIcon onClick={() => setTheme('light')}></LightModeIcon>}  
+        
+      </footer>
     </>
+    </ThemeProvider>
+
   )
  
 }
