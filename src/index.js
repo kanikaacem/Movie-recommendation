@@ -5,6 +5,8 @@ import {createStore} from 'redux';
 import { Provider } from 'react-redux';
 import {useEffect} from "react";
 import { QrCodeScannerOutlined } from "@mui/icons-material";
+import { StyledEngineProvider } from '@mui/material/styles';
+
 //don't use the original store state
 const initialState = {
   values: [],
@@ -106,7 +108,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
     <Provider store={store}>
-         <App />
+          <StyledEngineProvider injectFirst>
+            <App />
+         </StyledEngineProvider>
+
     </Provider>
 );
 
@@ -158,3 +163,6 @@ root.render(
 //     type:'DECREMENT',
 //     payload:2
 //   })
+
+
+//https://css-tricks.com/a-dark-mode-toggle-with-react-and-themeprovider/
