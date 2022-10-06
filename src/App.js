@@ -18,6 +18,7 @@ import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { useState } from "react";
 // import { ThemeProvider } from '@material-ui/styles';
 // import { createTheme } from '@material-ui/core/styles';
@@ -30,6 +31,9 @@ function App() {
      theme === 'light' ? dispatch({type:'CHANGE_THEME' ,payload:'dark' }) :
       dispatch({type:'CHANGE_THEME' ,payload:'light'})
     // theme === 'light' ? setTheme('dark') : setTheme('light')
+  }
+  const handleScrollUp = () =>{
+    dispatch({type:'SCROLL_UP'});
   }
   // const lightTheme = createTheme({
   //     body:"#ffffff",
@@ -85,6 +89,11 @@ function App() {
           icon={<FullscreenIcon></FullscreenIcon>}
           tooltipTitle='Full Screen' 
           />
+        <SpeedDialAction
+          icon= {<KeyboardDoubleArrowUpIcon></KeyboardDoubleArrowUpIcon>}
+          tooltipTitle='Scroll UP'
+          onClick = {handleScrollUp}
+        />
       </SpeedDial>
       
         

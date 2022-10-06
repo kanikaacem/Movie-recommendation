@@ -101,6 +101,9 @@ const reducer = (state,action) =>{
 
     case "CHANGE_THEME":
        return ({...initialState,movies:state.movies,theme:action.payload})
+    case "SCROLL_UP":
+        window.scrollTo(0,0);
+        return state;
     default:
       return state;
 
