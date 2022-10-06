@@ -14,12 +14,23 @@ import { GlobalStyles } from "./GlobalStyles";
 import { lightTheme, darkTheme } from "./theme.js"
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { useState } from "react";
 // import { ThemeProvider } from '@material-ui/styles';
 // import { createTheme } from '@material-ui/core/styles';
 function App() {
   const searchedMovie = useSelector(state => state.searchedMovie);
-  const [theme,setTheme] = useState('light')
+  const theme = useSelector(state => state.theme);
+  const dispatch = useDispatch();
+  // const [theme,setTheme] = useState('light');
+  const handleDarkMode = () => {
+     theme === 'light' ? dispatch({type:'CHANGE_THEME' ,payload:'dark' }) :
+      dispatch({type:'CHANGE_THEME' ,payload:'light'})
+    // theme === 'light' ? setTheme('dark') : setTheme('light')
+  }
   // const lightTheme = createTheme({
   //     body:"#ffffff",
   //     color:"black",
@@ -57,9 +68,25 @@ function App() {
       <MovieItem></MovieItem>
       </div>
       <footer>
-      { theme === 'light' ? 
-      <DarkModeIcon onClick={() => setTheme('dark')}></DarkModeIcon> : 
-      <LightModeIcon onClick={() => setTheme('light')}></LightModeIcon>}  
+      <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        icon={<SpeedDialIcon />}
+      >
+        <SpeedDialAction
+            icon={theme === 'light' ?
+            <DarkModeIcon></DarkModeIcon> :
+            <LightModeIcon ></LightModeIcon>
+           }
+            tooltipTitle='toogle Dark/light Mode'
+            onClick = {handleDarkMode}
+          />
+        <SpeedDialAction 
+          icon={<FullscreenIcon></FullscreenIcon>}
+          tooltipTitle='Full Screen' 
+          />
+      </SpeedDial>
+      
         
       </footer>
     </>

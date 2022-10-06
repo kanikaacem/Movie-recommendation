@@ -17,6 +17,7 @@ const initialState = {
   taskcompleted:'none',
   movies:[],
   searchedMovie:{},
+  theme: 'light'
 
 };
 
@@ -97,6 +98,9 @@ const reducer = (state,action) =>{
     case "UPDATE_SEARCH_MOVIE":
       console.log(action.payload);
       return ({...initialState,movies:state.movies,searchedMovie:{...action.payload}})
+
+    case "CHANGE_THEME":
+       return ({...initialState,movies:state.movies,theme:action.payload})
     default:
       return state;
 

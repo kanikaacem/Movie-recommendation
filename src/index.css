@@ -165,7 +165,12 @@ footer {
 }
 
 footer svg {
-    transform: scale(2.5);
+    transform: scale(1.5);
     width: 100%;
     cursor: pointer;
+}
+
+footer button {
+    width: 40px !important;
+    height: 40px !important;
 }
