@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import {createStore} from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import { Provider } from 'react-redux';
-import {useEffect} from "react";
-import { QrCodeScannerOutlined } from "@mui/icons-material";
-import { StyledEngineProvider } from '@mui/material/styles';
-
+// import Login from './Component/Login';
 //don't use the original store state
 const initialState = {
   values: [],
@@ -17,7 +16,9 @@ const initialState = {
   taskcompleted:'none',
   movies:[],
   searchedMovie:{},
-  theme: 'light'
+  theme: 'light',
+  token:'',
+  userInformation:[]
 
 };
 
@@ -94,16 +95,22 @@ const reducer = (state,action) =>{
         remainingTask: state.totalTask - completedTaskValue,
         todoList:[...updatedToDoList]})
     case "INTIALIZE_MOVIES":
-      return ({...initialState,movies:[...action.payload]})
+      return ({...initialState,token: state.token,movies:[...action.payload]})
     case "UPDATE_SEARCH_MOVIE":
       console.log(action.payload);
-      return ({...initialState,movies:state.movies,searchedMovie:{...action.payload}})
+      return ({...initialState,token: state.token,movies:state.movies,searchedMovie:{...action.payload}})
 
     case "CHANGE_THEME":
-       return ({...initialState,movies:state.movies,theme:action.payload})
+       return ({...initialState,token:state.token ,movies:state.movies,theme:action.payload})
     case "SCROLL_UP":
         window.scrollTo(0,0);
         return state;
+    case "LOGIN":
+      
+      const rand=()=>Math.random(0).toString(36).substr(2);
+      const token=(length)=>(rand()+rand()+rand()+rand()).substr(0,length);
+     
+      return {...initialState,token:token(40),userInformation:action.payload}
     default:
       return state;
 
@@ -115,10 +122,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
     <Provider store={store}>
-          <StyledEngineProvider injectFirst>
-            <App />
-         </StyledEngineProvider>
-
+      <App/>
     </Provider>
 );
 

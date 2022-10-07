@@ -19,12 +19,14 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-import { useState } from "react";
 // import { ThemeProvider } from '@material-ui/styles';
 // import { createTheme } from '@material-ui/core/styles';
+import Login from './Component/Login';
+import Middle  from './Middle';
 function App() {
-  const searchedMovie = useSelector(state => state.searchedMovie);
+  
   const theme = useSelector(state => state.theme);
+  const token = useSelector(state => state.token);
   const dispatch = useDispatch();
   // const [theme,setTheme] = useState('light');
   const handleDarkMode = () => {
@@ -66,11 +68,7 @@ function App() {
 
     <>
       <GlobalStyles/>
-      <div id="movieListMain" >
-      <SearchForm></SearchForm>
-      { Object.keys(searchedMovie).length !== 0 && !searchedMovie.Error && <SearchedMovie></SearchedMovie>} 
-      <MovieItem></MovieItem>
-      </div>
+      {token !== '' ? <Middle></Middle> : <Login></Login>}
       <footer>
       <SpeedDial
         ariaLabel="SpeedDial basic example"

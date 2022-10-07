@@ -175,3 +175,25 @@ footer button {
     width: 40px !important;
     height: 40px !important;
 }
+
+#LOGIN_FORM {
+    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+    align-items: center;
+}
+
+nav {
+    background: black;
+    width: 96%;
+    padding: 30px;
+    position: sticky;
+    top: 0px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
