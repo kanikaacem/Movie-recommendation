@@ -68,7 +68,8 @@ function App() {
 
     <>
       <GlobalStyles/>
-      {token !== '' ? <Middle></Middle> : <Login></Login>}
+      // {token !== '' ? <Middle></Middle> : <Login></Login>}
+      <Middle/>
       <footer>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
