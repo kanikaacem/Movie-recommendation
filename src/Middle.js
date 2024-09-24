@@ -8,7 +8,7 @@ function Middle(){
     return (<>
     <nav><a href="#">HOME</a></nav>
     <div id="movieListMain" >
-        <h2> Hello </h2>
+        // <h2> Hello </h2>
         <SearchForm></SearchForm>
         { Object.keys(searchedMovie).length !== 0 && !searchedMovie.Error && <SearchedMovie></SearchedMovie>} 
         <MovieItem></MovieItem>
