@@ -21,7 +21,7 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 // import { ThemeProvider } from '@material-ui/styles';
 // import { createTheme } from '@material-ui/core/styles';
-import Login from './Component/Login';
+// import Login from './Component/Login';
 import Middle  from './Middle';
 function App() {
   
